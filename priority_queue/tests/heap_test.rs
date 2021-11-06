@@ -51,8 +51,8 @@ mod tests {
             #[test]
             fn create_empty_heap() {
                 let values: [i32; 0] = [];
-                let h: Heap = *PriorityQueue::from(&values).unwrap();
-                assert!(h.is_empty());
+                let err: Result<Box<Heap>, &'static str> = PriorityQueue::from(&values);
+                assert_eq!(err.unwrap_err(), "Empty slice")
             }
             #[test]
             fn create_1_element_heap() {

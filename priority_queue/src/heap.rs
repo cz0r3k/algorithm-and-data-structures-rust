@@ -19,12 +19,12 @@ impl PriorityQueue for Heap {
     fn from(values: &[i32]) -> Result<Box<Self>, &'static str> {
         if values.len() >= MAX_HEAP_SIZE {
             Err("Slice too long")
+        } else if values.is_empty() {
+            Err("Empty slice")
         } else {
             let mut h = Heap::new();
             h.last_element = values.len();
-            for i in 1..=h.last_element {
-                h.heap[i] = values[i - 1];
-            }
+            h.heap[1..(h.last_element + 1)].clone_from_slice(&values[..((h.last_element - 1) + 1)]);
             for i in (1..=(h.last_element / 2)).rev() {
                 let _res = h.down_heap(i);
             }
