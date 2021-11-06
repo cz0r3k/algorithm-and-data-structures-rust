@@ -24,7 +24,7 @@ impl PriorityQueue for Heap {
         } else {
             let mut h = Heap::new();
             h.last_element = values.len();
-            h.heap[1..(h.last_element + 1)].clone_from_slice(&values[..((h.last_element - 1) + 1)]);
+            h.heap[1..=h.last_element].clone_from_slice(&values[..h.last_element]);
             for i in (1..=(h.last_element / 2)).rev() {
                 let _res = h.down_heap(i);
             }
