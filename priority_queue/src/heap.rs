@@ -78,7 +78,7 @@ impl Heap {
         let mut pointer = pointer;
         while pointer * 2 <= self.last_element {
             let mut child_pointer = pointer * 2;
-            if child_pointer + 1 <= self.last_element
+            if child_pointer < self.last_element
                 && self.heap[child_pointer + 1] > self.heap[child_pointer]
             {
                 child_pointer += 1;
